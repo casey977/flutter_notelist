@@ -7,14 +7,16 @@ class TileClass {
 }
 
 class ListTileWidget extends StatelessWidget {
-  const ListTileWidget({super.key});
+  final String tileTitle;
+
+  const ListTileWidget({super.key, required this.tileTitle});
 
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
-      leading: Icon(Icons.edit_note_sharp),
-      title: Text("Test!"),
-      tileColor:  Color.fromARGB(255, 37, 37, 37),
+    return ListTile(
+      leading: const Icon(Icons.edit_note_sharp),
+      title: Text(tileTitle),
+      tileColor: const Color.fromARGB(255, 37, 37, 37),
     );
   }
 }
