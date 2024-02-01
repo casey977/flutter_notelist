@@ -12,6 +12,8 @@ class MainApp extends StatefulWidget {
 }
 
 class MainAppState extends State<MainApp> {
+  var notes = <Widget>[];
+
   @override
   void initState() {
     super.initState();
@@ -49,16 +51,7 @@ class MainAppState extends State<MainApp> {
         ),
         body: ListView(
           padding: const EdgeInsets.all(12),
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.edit_note_sharp),
-              title: const Text("Test!"),
-              tileColor: const Color.fromARGB(255, 37, 37, 37),
-              onTap: () {
-                1+1;
-              }
-            )
-          ]
+          children: notes
         )
       )
     );
