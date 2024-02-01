@@ -39,7 +39,7 @@ class MainAppState extends State<MainApp> {
         title: const Text('Notes'),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.plus_one),
+            icon: const Icon(Icons.add),
             onPressed: () {
               1+1;
             },
