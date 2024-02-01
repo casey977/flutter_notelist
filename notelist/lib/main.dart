@@ -21,7 +21,9 @@ class MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: ,
-      theme: ,
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0)
+      )
     );
   }
 }
