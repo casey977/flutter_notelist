@@ -46,6 +46,15 @@ class MainAppState extends State<MainApp> {
               },
             )
           ]
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(12),
+          children: const <Widget>[
+            ListTile(
+              leading: Icon(Icons.edit_note_sharp),
+              title: Text("Test!"),
+            )
+          ]
         )
       )
     );
