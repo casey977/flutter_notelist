@@ -49,10 +49,13 @@ class MainAppState extends State<MainApp> {
         ),
         body: ListView(
           padding: const EdgeInsets.all(12),
-          children: const <Widget>[
+          children: <Widget>[
             ListTile(
-              leading: Icon(Icons.edit_note_sharp),
-              title: Text("Test!"),
+              leading: const Icon(Icons.edit_note_sharp),
+              title: const Text("Test!"),
+              onTap: () {
+                1+1;
+              }
             )
           ]
         )
