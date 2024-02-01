@@ -35,16 +35,18 @@ class MainAppState extends State<MainApp> {
             onSurface: Color.fromARGB(255, 255, 255, 255),
           )
         ),
-      home: AppBar(
-        title: const Text('Notes'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              1+1;
-            },
-          )
-        ]
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Notes'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {
+                1+1;
+              },
+            )
+          ]
+        )
       )
     );
   }
