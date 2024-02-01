@@ -20,9 +20,31 @@ class MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ,
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0)
+          colorScheme: const ColorScheme(
+            brightness: Brightness.dark,
+            primary: Color.fromARGB(255, 0, 0, 0),
+            onPrimary: Color.fromARGB(255, 0, 0, 0),
+            secondary: Color.fromARGB(255, 255, 255, 255),
+            onSecondary: Color.fromARGB(255, 255, 255, 255),
+            error: Color.fromARGB(0, 255, 0, 0),
+            onError: Color.fromARGB(0, 255, 0, 0),
+            background: Color.fromARGB(255, 0, 0, 0),
+            onBackground: Color.fromARGB(255, 0, 0, 0),
+            surface: Color.fromARGB(255, 0, 0, 0),
+            onSurface: Color.fromARGB(255, 255, 255, 255),
+          )
+        ),
+      home: AppBar(
+        title: const Text('Notes'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.plus_one),
+            onPressed: () {
+              1+1;
+            },
+          )
+        ]
       )
     );
   }
