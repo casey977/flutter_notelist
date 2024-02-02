@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'tile.dart';
 
 class AppList extends StatefulWidget {
-  final Function onAddToStack;
-
-  const AppList({super.key, required this.onAddToStack});
+  const AppList({super.key});
 
   @override
   AppListState createState() => AppListState();
 }
 
 class AppListState extends State<AppList> {
+  late Function() function;
+  
+
   @override
   void initState() {
     super.initState();
@@ -28,10 +28,7 @@ class AppListState extends State<AppList> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              Widget widgetToAdd = Container(
-                color: Colors.blue,
-              );
-              widget.onAddToStack(widgetToAdd);
+              1+1;
             }
           )
         ]

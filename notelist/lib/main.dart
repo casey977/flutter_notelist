@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'applist.dart';
 
+List<Widget> stackWidgets = [];
+
 void main() {
   runApp(const MainApp());
 }
@@ -13,19 +15,10 @@ class MainApp extends StatefulWidget {
 }
 
 class MainAppState extends State<MainApp> {
-  List<Widget> stackWidgets = [];
-
-  void addToStack(Widget widgetToAdd) {
-    setState(() {
-      stackWidgets.add(widgetToAdd);
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    Widget initialWidget = AppList(onAddToStack: addToStack);
-    stackWidgets.add(initialWidget);
+    stackWidgets.add(const AppList());
   }
 
   @override
@@ -52,10 +45,4 @@ class MainAppState extends State<MainApp> {
       )
     );
   }
-}
-
-// Functions...
-
-void openPad() {
-  1+1;
 }
