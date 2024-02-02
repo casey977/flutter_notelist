@@ -13,6 +13,14 @@ class MainApp extends StatefulWidget {
 }
 
 class MainAppState extends State<MainApp> {
+  List<Widget> stackWidgets = [const AppList()];
+
+  void addToStack(Widget newWidget) {
+    setState(() {
+      stackWidgets.add(newWidget);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -36,10 +44,8 @@ class MainAppState extends State<MainApp> {
             onSurface: Color.fromARGB(255, 255, 255, 255),
           )
         ),
-      home: const Stack(
-        children: <Widget>[
-          AppList()
-        ]
+      home: Stack(
+        children: stackWidgets
       )
     );
   }
