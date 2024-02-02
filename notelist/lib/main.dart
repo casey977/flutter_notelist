@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tile.dart';
+import 'applist.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,8 +13,6 @@ class MainApp extends StatefulWidget {
 }
 
 class MainAppState extends State<MainApp> {
-  var notes = <Widget>[];
-
   @override
   void initState() {
     super.initState();
@@ -38,22 +36,10 @@ class MainAppState extends State<MainApp> {
             onSurface: Color.fromARGB(255, 255, 255, 255),
           )
         ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Notes'),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () {
-                1+1;
-              },
-            )
-          ]
-        ),
-        body: ListView(
-          padding: const EdgeInsets.all(12),
-          children: notes
-        )
+      home: const Stack(
+        children: <Widget>[
+          AppList()
+        ]
       )
     );
   }
