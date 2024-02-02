@@ -12,6 +12,7 @@ class AppListState extends State<AppList> {
   @override
   void initState() {
     super.initState();
+    // Load data here...
   }
 
   @override
