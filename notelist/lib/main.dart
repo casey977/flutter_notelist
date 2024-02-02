@@ -13,21 +13,24 @@ class MainApp extends StatefulWidget {
 }
 
 class MainAppState extends State<MainApp> {
-  List<Widget> stackWidgets = [const AppList()];
+  List<Widget> stackWidgets = [];
 
-  void addToStack(Widget newWidget) {
+  void addToStack(Widget widgetToAdd) {
     setState(() {
-      stackWidgets.add(newWidget);
+      stackWidgets.add(widgetToAdd);
     });
   }
 
   @override
   void initState() {
     super.initState();
+    Widget initialWidget = AppList(onAddToStack: addToStack);
+    stackWidgets.add(initialWidget);
   }
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       theme: ThemeData(
           colorScheme: const ColorScheme(

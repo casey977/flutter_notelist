@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'tile.dart';
 
 class AppList extends StatefulWidget {
-  const AppList({super.key});
+  final Function onAddToStack;
+
+  const AppList({super.key, required this.onAddToStack});
 
   @override
   AppListState createState() => AppListState();
@@ -18,7 +20,7 @@ class AppListState extends State<AppList> {
   @override
   Widget build(BuildContext context) {
     var list = <Widget>[];
-
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notes'),
@@ -26,8 +28,11 @@ class AppListState extends State<AppList> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              1+1;
-            },
+              Widget widgetToAdd = Container(
+                color: Colors.blue,
+              );
+              widget.onAddToStack(widgetToAdd);
+            }
           )
         ]
       ),
