@@ -53,3 +53,9 @@ class MainAppState extends State<MainApp> {
     );
   }
 }
+
+// Functions...
+
+void openPad() {
+  1+1;
+}
