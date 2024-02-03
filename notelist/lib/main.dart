@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'applist.dart';
+import 'pad.dart';
 
 List<Widget> stackWidgets = [];
 
@@ -18,12 +19,11 @@ class MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    stackWidgets.add(const AppList());
+    stackWidgets.add(AppList(callback: addPad));
   }
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       theme: ThemeData(
           colorScheme: const ColorScheme(
@@ -44,5 +44,11 @@ class MainAppState extends State<MainApp> {
         children: stackWidgets
       )
     );
+  }
+
+  addPad() {
+    setState(() {
+      stackWidgets.add(const Pad());
+    });
   }
 }
