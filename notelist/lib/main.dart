@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'applist.dart';
 import 'pad.dart';
+
+import 'package:path_provider/path_provider.dart';
 
 List<Widget> stackWidgets = [];
 
@@ -50,5 +53,16 @@ class MainAppState extends State<MainApp> {
     setState(() {
       stackWidgets.add(const Pad());
     });
+  }
+
+  void saveToFile(String text) async {
+    try {
+      final Directory directory = await getExternalStorageDirectory();
+      final File file = File('${directory.path}/myfile.txt');
+      await file.writeAsString(text);
+      debugPrint('Text saved to file successfully!');
+    } catch (e) {
+      debugPrint('Error saving to file: $e');
+    }
   }
 }
