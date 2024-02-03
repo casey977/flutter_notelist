@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'applist.dart';
 import 'pad.dart';
+import 'storage_handling.dart';
 
 import 'package:path_provider/path_provider.dart';
 
 List<Widget> stackWidgets = [];
+List<String> notes = [];
 
 void main() {
-  runApp(const MainApp());
+  runApp(MainApp(storage: HandleStorage()));
 }
 
 class MainApp extends StatefulWidget {
-  const MainApp({super.key});
+  final HandleStorage storage;
+  
+  const MainApp({super.key, required this.storage});
 
   @override
   MainAppState createState() => MainAppState();
@@ -22,6 +26,11 @@ class MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
+    widget.storage.readNotes().then((content) {
+      setState(() {
+        notes = content.split(';');
+      });
+    });
     stackWidgets.add(AppList(callback: addPad));
   }
 
@@ -53,16 +62,5 @@ class MainAppState extends State<MainApp> {
     setState(() {
       stackWidgets.add(const Pad());
     });
-  }
-
-  void saveToFile(String text) async {
-    try {
-      final Directory directory = await getExternalStorageDirectory();
-      final File file = File('${directory.path}/myfile.txt');
-      await file.writeAsString(text);
-      debugPrint('Text saved to file successfully!');
-    } catch (e) {
-      debugPrint('Error saving to file: $e');
-    }
   }
 }
