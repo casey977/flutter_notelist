@@ -38,7 +38,7 @@ class MainAppState extends State<MainApp> {
     GlobalState globalState = Provider.of<GlobalState>(context);
 
     return Consumer<GlobalState>(
-      builder: (context, GlobalState, child) {
+      builder: (context, leGlobalState, child) {
         return MaterialApp(
           theme: ThemeData(
               colorScheme: const ColorScheme(
