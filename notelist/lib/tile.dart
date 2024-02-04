@@ -4,7 +4,7 @@ class TileClass {
   String title;
   int number;
   
-  TileClass({required this.title});
+  TileClass({required this.title, required this.number});
 }
 
 class ListTileWidget extends StatelessWidget {
