@@ -6,7 +6,7 @@ import 'storage_handling.dart';
 import 'package:path_provider/path_provider.dart';
 
 List<Widget> stackWidgets = [];
-List<Widget> noteTitles = [];
+List<String> noteTitles = [];
 List<String> noteContents = [];
 
 void main() {
@@ -26,11 +26,21 @@ class MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
+
+    // Read notes from file...
     widget.storage.readNotes().then((content) {
       setState(() {
-        notes = content.split(';');
+        List<String> notes = content.split(';');
+        List<String> tmp;
+        for (var element in notes) {
+          tmp = element.split(':');
+          noteTitles.add(tmp[0]);
+          noteContents.add(tmp[1]);
+        }
       });
     });
+
+    // Add note list to stack...
     stackWidgets.add(AppList(callback: addPad));
   }
 
