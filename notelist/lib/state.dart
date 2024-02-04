@@ -34,6 +34,8 @@ class GlobalState extends ChangeNotifier {
       Map<String, dynamic> jsonMap = jsonDecode(element);
       notes.add(Note.fromJson(jsonMap));
     }
+
+    notifyListeners();
   }
 
   /*
