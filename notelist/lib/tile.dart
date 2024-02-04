@@ -11,8 +11,9 @@ class TileClass {
 
 class ListTileWidget extends StatelessWidget {
   final String title;
+  final int number;
 
-  const ListTileWidget({super.key, required this.title});
+  const ListTileWidget({super.key, required this.title, required this.number});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class ListTileWidget extends StatelessWidget {
       title: Text(title),
       tileColor: const Color.fromARGB(255, 37, 37, 37),
       onTap: () {
-        globalState.wakePad();
+        globalState.wakePad(widget.number);
       }
     );
   }
