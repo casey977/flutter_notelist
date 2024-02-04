@@ -5,6 +5,7 @@ import 'pad.dart';
 import 'storage_handling.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
+import 'state.dart';
 
 List<Widget> stackWidgets = [];
 List<String> noteTitles = [];
@@ -13,7 +14,7 @@ List<String> noteContents = [];
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => MyGlobalState(),
+      create: (context) => GlobalState(),
       child: MainApp(storage: HandleStorage())
     )
   );
