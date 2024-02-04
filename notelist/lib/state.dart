@@ -29,6 +29,7 @@ class GlobalState extends ChangeNotifier {
       notesRaw.add(text);
     }
 
+    // Convert raw notes to classes...
     for (String element in filepaths) {
       Map<String, dynamic> jsonMap = jsonDecode(element);
       notes.add(Note.fromJson(jsonMap));
