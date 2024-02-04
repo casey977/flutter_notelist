@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppList extends StatefulWidget {
-  final VoidCallback callback;
-
-  const AppList({super.key, required this.callback});
+  const AppList({super.key});
 
   @override
   AppListState createState() => AppListState();
@@ -13,7 +11,8 @@ class AppListState extends State<AppList> {
   @override
   void initState() {
     super.initState();
-    // Load data here...
+    
+    
   }
 
   @override
@@ -27,7 +26,7 @@ class AppListState extends State<AppList> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              widget.callback();
+              1+1;
             }
           )
         ]

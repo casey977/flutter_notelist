@@ -1,58 +1,44 @@
-import 'package:flutter/material.dart';
-import 'dart:io';
-import 'applist.dart';
-import 'pad.dart';
-import 'storage_handling.dart';
-import 'package:provider/provider.dart';
-import 'package:path_provider/path_provider.dart';
-import 'state.dart';
+// ignore_for_file: prefer_const_constructors
 
-List<Widget> stackWidgets = [];
-List<String> noteTitles = [];
-List<String> noteContents = [];
+import 'package:flutter/material.dart';
+import 'package:notelist/note.dart';
+import 'applist.dart';
+import 'package:provider/provider.dart';
+import 'state.dart';
+import 'storage_handling.dart';
 
 void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => GlobalState(),
-      child: MainApp(storage: HandleStorage())
+      child: MainApp()
     )
   );
 }
 
 class MainApp extends StatefulWidget {
-  final HandleStorage storage;
-  
-  const MainApp({super.key, required this.storage});
+  const MainApp({super.key});
 
   @override
   MainAppState createState() => MainAppState();
 }
 
 class MainAppState extends State<MainApp> {
+  late GlobalState globalState;
+
   @override
   void initState() {
     super.initState();
+    globalState = Provider.of<GlobalState>(context, listen: false);
 
-    // Read notes from file...
-    widget.storage.readNotes().then((content) {
-      setState(() {
-        List<String> notes = content.split(';');
-        List<String> tmp;
-        for (var element in notes) {
-          tmp = element.split(':');
-          noteTitles.add(tmp[0]);
-          noteContents.add(tmp[1]);
-        }
-      });
-    });
-
-    // Add note list to stack...
-    stackWidgets.add(AppList(callback: addPad));
+    globalState.stackWidgets.add(const AppList());
+    globalState.getNotes();
   }
 
   @override
   Widget build(BuildContext context) {
+    GlobalState globalState = Provider.of<GlobalState>(context);
+
     return MaterialApp(
       theme: ThemeData(
           colorScheme: const ColorScheme(
@@ -70,14 +56,8 @@ class MainAppState extends State<MainApp> {
           )
         ),
       home: Stack(
-        children: stackWidgets
+        children: globalState.stackWidgets
       )
     );
-  }
-
-  addPad() {
-    setState(() {
-      stackWidgets.add(const Pad());
-    });
   }
 }

@@ -3,28 +3,35 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 class HandleStorage {
-  Future<String> get _localPath async {
+  Future<String> _localPath() async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/notelist_notes.txt');
+  Future<File> localFile(String filename) async {
+    final path = _localPath;
+    return File('$path/$filename');
   }
 
-  Future<String> readNotes() async {
+  Future<List<String>> localFilePaths() async {
     try {
-      final file = await _localFile;
-      final content = await file.readAsString();
-      return content;
+      String path = await _localPath();
+      Directory directory = Directory(path);
+      List<FileSystemEntity> files = directory.listSync();
+      List<String> fileList = [];
+      for (var file in files) {
+        fileList.add(file.path);
+      }
+      return fileList;
     } catch (e) {
-      return "ERROR";
+      throw Exception('Error getting files!');
     }
   }
 
+  /*
   Future<File> writeNotes(content) async {
     final file = await _localFile;
     return file.writeAsString(content);
   }
+  */
 }
