@@ -3,11 +3,11 @@ import 'dart:io';
 import 'applist.dart';
 import 'pad.dart';
 import 'storage_handling.dart';
-
 import 'package:path_provider/path_provider.dart';
 
 List<Widget> stackWidgets = [];
-List<String> notes = [];
+List<Widget> noteTitles = [];
+List<String> noteContents = [];
 
 void main() {
   runApp(MainApp(storage: HandleStorage()));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "main.dart";
 
 class Pad extends StatefulWidget {
   const Pad({super.key});
@@ -8,6 +9,7 @@ class Pad extends StatefulWidget {
 }
 
 class PadState extends State<Pad> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +19,6 @@ class PadState extends State<Pad> {
           IconButton(
             icon: const Icon(Icons.check),
             onPressed: () {
-              1+1;
             }
           ),
           IconButton(
