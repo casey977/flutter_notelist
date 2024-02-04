@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class TileClass {
   String title;
-
+  int number;
+  
   TileClass({required this.title});
 }
 
