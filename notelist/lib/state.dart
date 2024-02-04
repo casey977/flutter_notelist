@@ -11,12 +11,6 @@ class GlobalState extends ChangeNotifier {
   List<String> notesRaw = [];
   List<Note> notes = [];
 
-  /*
-  void updateNotesData(List<List<String>> newData) {
-    notesData = newData;
-    notifyListeners();
-  }*/
-
   void getNotes() async {
     List<String> filepaths = await storage.localFilePaths();
 
