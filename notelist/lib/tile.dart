@@ -24,7 +24,7 @@ class ListTileWidget extends StatelessWidget {
       title: Text(title),
       tileColor: const Color.fromARGB(255, 37, 37, 37),
       onTap: () {
-        globalState.wakePad(widget.number);
+        globalState.wakePad(Pad(widget.number));
       }
     );
   }
