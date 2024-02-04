@@ -1,2 +1,9 @@
 2024-02-01
 Created project.
+
+
+2024-02-04
+Add beginning file handling.
+
+2024-02-04
+Tested global var/funcs. 
