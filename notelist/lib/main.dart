@@ -3,6 +3,7 @@ import 'dart:io';
 import 'applist.dart';
 import 'pad.dart';
 import 'storage_handling.dart';
+import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
 
 List<Widget> stackWidgets = [];
@@ -10,7 +11,12 @@ List<String> noteTitles = [];
 List<String> noteContents = [];
 
 void main() {
-  runApp(MainApp(storage: HandleStorage()));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => MyGlobalState(),
+      child: MainApp(storage: HandleStorage())
+    )
+  );
 }
 
 class MainApp extends StatefulWidget {
