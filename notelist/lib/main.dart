@@ -37,25 +37,29 @@ class MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     GlobalState globalState = Provider.of<GlobalState>(context);
 
-    return MaterialApp(
-      theme: ThemeData(
-          colorScheme: const ColorScheme(
-            brightness: Brightness.dark,
-            primary: Color.fromARGB(255, 0, 0, 0),
-            onPrimary: Color.fromARGB(255, 0, 0, 0),
-            secondary: Color.fromARGB(255, 255, 255, 255),
-            onSecondary: Color.fromARGB(255, 255, 255, 255),
-            error: Color.fromARGB(0, 255, 0, 0),
-            onError: Color.fromARGB(0, 255, 0, 0),
-            background: Color.fromARGB(255, 0, 0, 0),
-            onBackground: Color.fromARGB(255, 0, 0, 0),
-            surface: Color.fromARGB(255, 0, 0, 0),
-            onSurface: Color.fromARGB(255, 255, 255, 255),
+    return Consumer<GlobalState>(
+      builder: (context, GlobalState, child) {
+        return MaterialApp(
+          theme: ThemeData(
+              colorScheme: const ColorScheme(
+                brightness: Brightness.dark,
+                primary: Color.fromARGB(255, 0, 0, 0),
+                onPrimary: Color.fromARGB(255, 0, 0, 0),
+                secondary: Color.fromARGB(255, 255, 255, 255),
+                onSecondary: Color.fromARGB(255, 255, 255, 255),
+                error: Color.fromARGB(0, 255, 0, 0),
+                onError: Color.fromARGB(0, 255, 0, 0),
+                background: Color.fromARGB(255, 0, 0, 0),
+                onBackground: Color.fromARGB(255, 0, 0, 0),
+                surface: Color.fromARGB(255, 0, 0, 0),
+                onSurface: Color.fromARGB(255, 255, 255, 255),
+              )
+            ),
+          home: Stack(
+            children: globalState.stackWidgets
           )
-        ),
-      home: Stack(
-        children: globalState.stackWidgets
-      )
+        );
+      }
     );
   }
 }
