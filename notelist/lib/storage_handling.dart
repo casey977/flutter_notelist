@@ -10,7 +10,7 @@ class HandleStorage {
 
   Future<File> get _localFile async {
     final path = await _localPath;
-    return File('$path/notelist/notes.txt');
+    return File('$path/notelist_notes.txt');
   }
 
   Future<String> readNotes() async {
