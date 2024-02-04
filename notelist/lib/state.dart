@@ -3,6 +3,7 @@ import 'package:notelist/note.dart';
 import 'package:notelist/storage_handling.dart';
 import 'dart:convert';
 import 'dart:io';
+import 'applist.dart';
 
 var storage = HandleStorage();
 
@@ -29,6 +30,11 @@ class GlobalState extends ChangeNotifier {
       notes.add(Note.fromJson(jsonMap));
     }
 
+    notifyListeners();
+  }
+
+  void setupList(widg) {
+    stackWidgets.add(AppList());
     notifyListeners();
   }
 

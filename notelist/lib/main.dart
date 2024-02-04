@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:notelist/note.dart';
 import 'applist.dart';
 import 'package:provider/provider.dart';
 import 'state.dart';
-import 'storage_handling.dart';
 
 void main() {
   runApp(
@@ -31,8 +29,8 @@ class MainAppState extends State<MainApp> {
     super.initState();
     globalState = Provider.of<GlobalState>(context, listen: false);
 
-    globalState.stackWidgets.add(const AppList());
     globalState.getNotes();
+    globalState.setupList(AppList());
   }
 
   @override
