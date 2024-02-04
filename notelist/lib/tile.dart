@@ -15,12 +15,14 @@ class ListTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalState globalState = Provider.of<GlobalState>(context);
+
     return ListTile(
       leading: const Icon(Icons.edit_note_sharp),
       title: Text(title),
       tileColor: const Color.fromARGB(255, 37, 37, 37),
       onTap: () {
-        1+1;
+        globalState.wakePad();
       }
     );
   }
