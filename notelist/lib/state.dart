@@ -35,7 +35,9 @@ class GlobalState extends ChangeNotifier {
     }
   }
 
+  /*
   void saveNotes() {
     1+1;
   }
+  */
 }
