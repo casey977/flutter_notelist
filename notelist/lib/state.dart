@@ -4,6 +4,7 @@ import 'package:notelist/storage_handling.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'applist.dart';
+import 'pad.dart';
 
 var storage = HandleStorage();
 
@@ -35,6 +36,11 @@ class GlobalState extends ChangeNotifier {
 
   void setupList(widg) {
     stackWidgets.add(AppList());
+    notifyListeners();
+  }
+
+  void wakePad() {
+    stackWidgets.add(Pad());
     notifyListeners();
   }
 
