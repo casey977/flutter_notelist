@@ -9,11 +9,13 @@ var storage = HandleStorage();
 class GlobalState extends ChangeNotifier {
   List<Widget> stackWidgets = [];
   List<String> notesRaw = [];
-  List<String> notes = [];
+  List<Note> notes = [];
 
+  /*
   void updateNotesData(List<List<String>> newData) {
     notesData = newData;
     notifyListeners();
+  }*/
 
   void getNotes() async {
     List<String> filepaths = await storage.localFilePaths();
@@ -27,12 +29,10 @@ class GlobalState extends ChangeNotifier {
       notesRaw.add(text);
     }
 
-
-
-
-    .then((content) {
-      Map<String, dynamic> jsonMap = jsonDecode(content);
-      Note note = Note.fromJson(jsonMap);
+    for (String element in filepaths) {
+      Map<String, dynamic> jsonMap = jsonDecode(element);
+      notes.add(Note.fromJson(jsonMap));
+    }
   }
 
   void saveNotes() {
