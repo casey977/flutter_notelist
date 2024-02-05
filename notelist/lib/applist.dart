@@ -21,22 +21,26 @@ class AppListState extends State<AppList> {
   Widget build(BuildContext context) {
     GlobalState globalState = Provider.of<GlobalState>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Notes'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              debugPrint("Add!");
-            }
+    return Consumer<GlobalState>(
+      builder: (context, globalState, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Notes'),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () {
+                  debugPrint("Add!");
+                }
+              )
+            ]
+          ),
+          body: ListView(
+            padding: const EdgeInsets.all(12),
+            children: const []
           )
-        ]
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(12),
-        children: const []
-      )
+        );
+      }
     );
   }
 }
