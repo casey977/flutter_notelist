@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'pad.dart';
 import 'state.dart';
 
-class TileClass {
+class Tile {
   final String title;
   final int number;
   
-  TileClass({required this.title, required this.number});
+  Tile({required this.title, required this.number});
 }
 
-class ListTileWidget extends StatelessWidget {
+class ListTile extends StatefulWidget {
   final String title;
   final int number;
 
-  const ListTileWidget({super.key, required this.title, required this.number});
+  const ListTile({super.key, required this.title, required this.number});
+
+  @override
+  TileState createState() => TileState();
+}
+
+class TileState extends State<ListTile> {
 
   @override
   Widget build(BuildContext context) {
     GlobalState globalState = Provider.of<GlobalState>(context);
 
-    return ListTile(
-      leading: const Icon(Icons.edit_note_sharp),
-      title: Text(title),
-      tileColor: const Color.fromARGB(255, 37, 37, 37),
+    return GestureDetector(
+      child: const Card(
+        color: Colors.black
+      ),
       onTap: () {
-        globalState.wakePad(Pad(widget.number));
-      }
+        globalState.wakePad(number: widget.number);
+      },
     );
   }
 }
