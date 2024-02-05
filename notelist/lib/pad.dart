@@ -1,17 +1,33 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import "main.dart";
+import 'state.dart';
+import 'package:provider/provider.dart';
 
 class Pad extends StatefulWidget {
-  const Pad({super.key});
+  int number;
+
+  Pad({super.key, required this.number});
 
   @override
   PadState createState() => PadState();
 }
 
 class PadState extends State<Pad> {
-  
+  late GlobalState globalState;
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    globalState = Provider.of<GlobalState>(context, listen: false);
+  }
+
   @override
   Widget build(BuildContext context) {
+    _controller.text = globalState.active_note;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("New note..."),
@@ -33,7 +49,8 @@ class PadState extends State<Pad> {
         padding: const EdgeInsets.all(25),
         child: Column(
           children: [
-            const TextField(
+            TextField(
+            controller: _controller,
             keyboardType: TextInputType.multiline,
             maxLines: 1,
             decoration: InputDecoration(

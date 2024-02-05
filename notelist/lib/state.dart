@@ -39,7 +39,7 @@ class GlobalState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void wakePad(int number) {
+  void wakePad({required int number}) {
     stackWidgets.add(Pad(number));
     notifyListeners();
   }
