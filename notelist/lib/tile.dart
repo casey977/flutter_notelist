@@ -23,7 +23,10 @@ class TileState extends State<Tile> {
         globalState.wakePad(number: widget.number);
       },
       child: const Card(
-        color: Colors.black
+        color: Colors.black,
+        child: Center(
+          child: Text('Test...'),
+        ),
       )
     );
   }
