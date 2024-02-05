@@ -28,14 +28,14 @@ class AppListState extends State<AppList> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              1+1;
+              debugPrint("Add!");
             }
           )
         ]
       ),
       body: ListView(
         padding: const EdgeInsets.all(12),
-        children: globalState.stackWidgets
+        children: const []
       )
     );
   }

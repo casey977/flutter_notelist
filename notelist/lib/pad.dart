@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import "main.dart";
 import 'state.dart';
 import 'package:provider/provider.dart';
 

@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'applist.dart';
 import 'package:provider/provider.dart';
 import 'state.dart';
+import 'applist.dart';
 
 void main() {
   runApp(
@@ -29,16 +29,18 @@ class MainAppState extends State<MainApp> {
     super.initState();
     globalState = Provider.of<GlobalState>(context, listen: false);
 
+    globalState.ensureFolder();
     globalState.getNotes();
-    globalState.setupList(AppList());
+    //globalState.setupList(AppList());
   }
 
   @override
   Widget build(BuildContext context) {
     GlobalState globalState = Provider.of<GlobalState>(context);
+    globalState.stackWidgets.add(AppList());
 
     return Consumer<GlobalState>(
-      builder: (context, leGlobalState, child) {
+      builder: (context, globalState, child) {
         return MaterialApp(
           theme: ThemeData(
               colorScheme: const ColorScheme(
