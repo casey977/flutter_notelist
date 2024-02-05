@@ -12,6 +12,7 @@ class GlobalState extends ChangeNotifier {
   List<Widget> stackWidgets = [];
   List<String> notesRaw = [];
   List<Note> notes = [];
+  int activeNote = 0;
 
   void getNotes() async {
     List<String> filepaths = await storage.localFilePaths();
