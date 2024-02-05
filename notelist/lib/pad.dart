@@ -6,9 +6,9 @@ import 'state.dart';
 import 'package:provider/provider.dart';
 
 class Pad extends StatefulWidget {
-  int number;
+  final int number;
 
-  Pad({super.key, required this.number});
+  const Pad({super.key, required this.number});
 
   @override
   PadState createState() => PadState();
@@ -26,7 +26,7 @@ class PadState extends State<Pad> {
 
   @override
   Widget build(BuildContext context) {
-    _controller.text = globalState.active_note;
+    _controller.text = globalState.notes[globalState.activeNote].content;
 
     return Scaffold(
       appBar: AppBar(

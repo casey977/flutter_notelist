@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notelist/state.dart';
+import 'package:provider/provider.dart';
 
 class AppList extends StatefulWidget {
   const AppList({super.key});
@@ -8,17 +10,17 @@ class AppList extends StatefulWidget {
 }
 
 class AppListState extends State<AppList> {
+  late GlobalState globalState;
+
   @override
   void initState() {
     super.initState();
-    
-    
   }
 
   @override
   Widget build(BuildContext context) {
-    var list = <Widget>[];
-    
+    GlobalState globalState = Provider.of<GlobalState>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notes'),
@@ -33,7 +35,7 @@ class AppListState extends State<AppList> {
       ),
       body: ListView(
         padding: const EdgeInsets.all(12),
-        children: list
+        children: globalState.stackWidgets
       )
     );
   }
