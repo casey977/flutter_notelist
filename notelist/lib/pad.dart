@@ -15,7 +15,8 @@ class Pad extends StatefulWidget {
 
 class PadState extends State<Pad> {
   late GlobalState globalState;
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller1 = TextEditingController();
+  final TextEditingController _controller2 = TextEditingController();
 
   @override
   void initState() {
@@ -25,7 +26,13 @@ class PadState extends State<Pad> {
 
   @override
   Widget build(BuildContext context) {
-    _controller.text = globalState.notes[globalState.activeNote].content;
+    if (widget.number == 0) {
+      _controller1.text = "";
+      _controller2.text = "";
+    } else {
+      _controller1.text = globalState.notes[globalState.activeNote].title;
+      _controller2.text = globalState.notes[globalState.activeNote].content;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -34,6 +41,63 @@ class PadState extends State<Pad> {
           IconButton(
             icon: const Icon(Icons.check),
             onPressed: () {
+              1+1;
+            }
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () {
+              1+1;
+            }
+          )
+        ]
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          children: [
+            TextField(
+            controller: _controller1,
+            keyboardType: TextInputType.multiline,
+            maxLines: 1,
+            decoration: InputDecoration(
+              labelText: "Title...",
+              filled: true,
+              fillColor: Colors.blueGrey,
+              border: InputBorder.none
+            )
+            ),
+            Container(
+              height: 10
+            ),
+            TextField(
+              controller: _controller2,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              decoration: InputDecoration(
+                labelText: "Note...",
+                filled: true,
+                fillColor: Colors.blueGrey,
+                border: InputBorder.none
+              )
+            )
+          ]
+        )
+      )
+    );
+  }
+}
+
+/*
+
+Scaffold(
+      appBar: AppBar(
+        title: const Text("New note..."),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.check),
+            onPressed: () {
+              1+1;
             }
           ),
           IconButton(
@@ -53,7 +117,7 @@ class PadState extends State<Pad> {
             keyboardType: TextInputType.multiline,
             maxLines: 1,
             decoration: InputDecoration(
-              labelText: "Enter title...",
+              labelText: "Title...",
               filled: true,
               fillColor: Colors.blueGrey,
               border: InputBorder.none
@@ -66,7 +130,7 @@ class PadState extends State<Pad> {
               keyboardType: TextInputType.multiline,
               maxLines: null,
               decoration: InputDecoration(
-                labelText: "Enter note...",
+                labelText: "Note...",
                 filled: true,
                 fillColor: Colors.blueGrey,
                 border: InputBorder.none
@@ -76,5 +140,5 @@ class PadState extends State<Pad> {
         )
       )
     );
-  }
-}
+
+*/

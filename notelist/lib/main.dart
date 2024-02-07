@@ -31,13 +31,12 @@ class MainAppState extends State<MainApp> {
 
     globalState.ensureFolder();
     globalState.getNotes();
-    //globalState.setupList(AppList());
+    globalState.stackWidgets.add(AppList());
   }
 
   @override
   Widget build(BuildContext context) {
     GlobalState globalState = Provider.of<GlobalState>(context);
-    globalState.stackWidgets.add(AppList());
 
     return Consumer<GlobalState>(
       builder: (context, globalState, child) {

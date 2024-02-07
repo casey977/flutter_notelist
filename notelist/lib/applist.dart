@@ -21,8 +21,13 @@ class AppListState extends State<AppList> {
   Widget build(BuildContext context) {
     GlobalState globalState = Provider.of<GlobalState>(context);
 
+    debugPrint(globalState.stackWidgets.length.toString());
+
+    // Build list of notes here...
+    List<Widget> theList = [];
+    
     return Consumer<GlobalState>(
-      builder: (context, globalState, child) {
+      builder: (context, leGlobalState, child) {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Notes'),
@@ -31,13 +36,15 @@ class AppListState extends State<AppList> {
                 icon: const Icon(Icons.add),
                 onPressed: () {
                   debugPrint("Add!");
+                  globalState.wakePad(number: 0);
                 }
               )
             ]
           ),
           body: ListView(
             padding: const EdgeInsets.all(12),
-            children: const []
+            scrollDirection: Axis.vertical,
+            children: theList // globalState.stackWidgets
           )
         );
       }

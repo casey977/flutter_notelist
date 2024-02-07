@@ -44,14 +44,17 @@ class GlobalState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /*
   void setupList(AppList widg) {
-    stackWidgets.add(const AppList());
+    stackWidgets.add(widg);
     notifyListeners();
   }
+  */
 
   void wakePad({required int number}) {
     stackWidgets.add(Pad(number: number));
     notifyListeners();
+    debugPrint("stackWidgets: ${stackWidgets.length.toString()}");
   }
 
   /*
