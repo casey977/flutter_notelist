@@ -47,7 +47,7 @@ class PadState extends State<Pad> {
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
-              1+1;
+              globalState.popScreen();
             }
           )
         ]

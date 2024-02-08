@@ -57,6 +57,11 @@ class GlobalState extends ChangeNotifier {
     debugPrint("stackWidgets: ${stackWidgets.length.toString()}");
   }
 
+  void popScreen() {
+    stackWidgets.removeLast();
+    notifyListeners();
+  }
+
   /*
   void saveNotes() {
     1+1;
