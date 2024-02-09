@@ -48,7 +48,6 @@ class PadState extends State<NewPad> {
               globalState.saveNote(jsonString, data['moment']);
               debugPrint('Notes: ${globalState.notes.length.toString()}');
               globalState.popScreen();
-              
             }
           ),
           IconButton(

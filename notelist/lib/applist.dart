@@ -40,7 +40,6 @@ class AppListState extends State<AppList> {
             padding: const EdgeInsets.all(8),
             itemCount: globalState.notes.length,
             itemBuilder: (BuildContext context, int index) {
-              debugPrint(index.toString());
               return Tile(title: globalState.notes[index].title, number: index);
             }
           )

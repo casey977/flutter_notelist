@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'note.dart';
 import 'state.dart';
 import 'package:provider/provider.dart';
 
@@ -44,7 +42,9 @@ class PadState extends State<Pad> {
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
-              1+1; // Delete note here...
+              String name = globalState.notes[widget.number].moment.toString();
+              storage.deleteFile('${storage.getDir()}$name');
+              globalState.notes.removeAt(widget.number);
               globalState.popScreen();
             }
           ),
