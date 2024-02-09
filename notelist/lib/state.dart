@@ -63,8 +63,15 @@ class GlobalState extends ChangeNotifier {
   }
 
   void saveNote(String content, String name) async {
-    final file = File('${directoryPath}${name}');
-    await file.writeAsString(content);
+
+    try {
+      final file = File('${directoryPath}${name}');
+      debugPrint('fffffffff: ${file} ${await file.exists()}');
+      await file.writeAsString(content);
+      notifyListeners();
+    } on Exception catch (e) {
+      debugPrint('ERROR: $e');
+    }
   }
 
   void updateNoteList(Note note) {

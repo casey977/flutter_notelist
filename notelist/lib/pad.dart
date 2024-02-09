@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'note.dart';
 import 'state.dart';
 import 'package:provider/provider.dart';
 
@@ -36,7 +39,16 @@ class PadState extends State<Pad> {
           IconButton(
             icon: const Icon(Icons.check),
             onPressed: () { // Save note...
-              1+1;
+              Note tmpNote = globalState.notes[widget.number];
+              Map<String, dynamic> data = {
+                'moment': tmpNote.moment.toString(),
+                'title': tmpNote.title,
+                'content': _controller2.text
+              };
+              String jsonString = json.encode(data);
+              globalState.saveNote(jsonString, data['moment']);
+              globalState.notes[widget.number].content = _controller2.text;
+              globalState.popScreen();
             }
           ),
           IconButton(

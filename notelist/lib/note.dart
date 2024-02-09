@@ -1,9 +1,9 @@
 class Note {
   final DateTime moment;
-  final String title;
-  final String content;
+  String title;
+  String content;
 
-  const Note({required this.moment, required this.title, required this.content});
+  Note({required this.moment, required this.title, required this.content});
 
   factory Note.fromJson(Map<String, dynamic> json) {
     return Note(
