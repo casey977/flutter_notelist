@@ -13,21 +13,24 @@ class Tile extends StatefulWidget {
 }
 
 class TileState extends State<Tile> {
-
   @override
   Widget build(BuildContext context) {
     GlobalState globalState = Provider.of<GlobalState>(context);
 
     return GestureDetector(
-      onTap: () {
-        globalState.wakePad(number: widget.number);
-      },
-      child: const Card(
-        color: Colors.black,
-        child: Center(
-          child: Text('Test...'),
-        ),
-      )
-    );
+        onTap: () {
+          debugPrint('test: ${widget.number.toString()}');
+          globalState.wakePad(number: widget.number);
+        },
+        child: Container(
+            height: 60,
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 45, 57, 63),
+              border: Border.all(
+                width: 5,
+                color: Colors.black,
+              ),
+            ),
+            child: Center(child: Text(widget.title))));
   }
 }

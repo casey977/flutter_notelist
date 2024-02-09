@@ -28,12 +28,12 @@ class PadState extends State<Pad> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.number == 0) {
+    if (widget.number == -999) {
       _controller1.text = '';
       _controller2.text = '';
     } else {
-      _controller1.text = globalState.notes[globalState.activeNote].title;
-      _controller2.text = globalState.notes[globalState.activeNote].content;
+      _controller1.text = globalState.notes[widget.number].title;
+      _controller2.text = globalState.notes[widget.number].content;
     }
 
     return Scaffold(

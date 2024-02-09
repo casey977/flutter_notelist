@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notelist/state.dart';
 import 'package:provider/provider.dart';
+import 'tile.dart';
 
 class AppList extends StatefulWidget {
   const AppList({super.key});
@@ -31,7 +32,7 @@ class AppListState extends State<AppList> {
                 icon: const Icon(Icons.add),
                 onPressed: () {
                   debugPrint("Add!");
-                  globalState.wakePad(number: 0);
+                  globalState.wakePad(number: -999);
                 }
               )
             ]
@@ -40,17 +41,8 @@ class AppListState extends State<AppList> {
             padding: const EdgeInsets.all(8),
             itemCount: globalState.notes.length,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  border: Border.all(
-                    width: 5,
-                    color: Colors.black,
-                  ),
-                ),
-                child: Center(child: Text(globalState.notes[index].title.toString())),
-              );
+              debugPrint(index.toString());
+              return Tile(title: globalState.notes[index].title, number: index);
             }
           )
         );

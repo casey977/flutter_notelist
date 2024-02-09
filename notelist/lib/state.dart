@@ -47,9 +47,9 @@ class GlobalState extends ChangeNotifier {
   }
 
   void wakePad({required int number}) {
+    debugPrint('number gotten: ${number}');
     stackWidgets.add(Pad(number: number));
     notifyListeners();
-    debugPrint("stackWidgets: ${stackWidgets.length.toString()}");
   }
 
   void popScreen() {
