@@ -7,7 +7,7 @@ class Note {
 
   factory Note.fromJson(Map<String, dynamic> json) {
     return Note(
-      moment: json['moment'],
+      moment: DateTime.parse(json['moment']),
       title: json['title'],
       content: json['content']);
   }

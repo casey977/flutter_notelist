@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'state.dart' as le_state;
 
 class HandleStorage {
   Future<String> ensureFolder() async {
@@ -24,7 +23,7 @@ class HandleStorage {
 
   Future<File> localFile(String filename) async {
     final path = await _localPath();
-    return File('${path}/${filename}');
+    return File('${filename}');
   }
 
   Future<List<String>> localFilePaths() async {

@@ -41,7 +41,7 @@ class AppListState extends State<AppList> {
             itemCount: globalState.notes.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                height: 50,
+                height: 60,
                 decoration: BoxDecoration(
                   color: Colors.blueGrey,
                   border: Border.all(

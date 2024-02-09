@@ -3,7 +3,6 @@ import 'package:notelist/note.dart';
 import 'package:notelist/storage_handling.dart';
 import 'dart:convert';
 import 'dart:io';
-import 'applist.dart';
 import 'pad.dart';
 
 var storage = HandleStorage();
@@ -17,6 +16,7 @@ class GlobalState extends ChangeNotifier {
 
   void ensureFolder() async {
     directoryPath = await storage.ensureFolder();
+    debugPrint('directoryPath: ${directoryPath}');
   }
 
   void getNotes() async {
@@ -27,7 +27,8 @@ class GlobalState extends ChangeNotifier {
     File tmp;
     for (String element in filepaths) {
       tmp = await storage.localFile(element);
-      debugPrint("LE PATH: $element");
+      //debugPrint("tmp: $tmp");
+      //debugPrint("element: $element");
       try {
       text = await tmp.readAsString();
       notesRaw.add(text);
@@ -38,7 +39,7 @@ class GlobalState extends ChangeNotifier {
 
     // Convert raw notes to classes...
     for (String element in notesRaw) {
-      Map<String, dynamic> jsonMap = jsonDecode(element);
+      Map<String, dynamic> jsonMap = await jsonDecode(element);
       notes.add(Note.fromJson(jsonMap));
     }
 
@@ -60,7 +61,7 @@ class GlobalState extends ChangeNotifier {
     final file = File('${directoryPath}${name}');
     await file.writeAsString(content);
   }
-  
+
   void updateNoteList(Note note) {
     notes.add(note);
     notifyListeners();
