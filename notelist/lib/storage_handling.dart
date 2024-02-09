@@ -2,17 +2,19 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'state.dart' as le_state;
 
 class HandleStorage {
-  Future<void> ensureFolder() async {
-  final directory = await getApplicationDocumentsDirectory();
-    final path = '${directory.path}/notelist/'; // Use / instead of .
+  Future<String> ensureFolder() async {
+    final directory = await getApplicationDocumentsDirectory();
+    final path = '${directory.path}/notelist/';
     if (await Directory(path).exists()) {
       debugPrint('Folder already exists!');
     } else {
       await Directory(path).create(recursive: true); // Use path here
       debugPrint('Folder created');
     }
+    return '${directory.path}/notelist/';
   }
 
   Future<String> _localPath() async {

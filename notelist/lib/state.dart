@@ -13,9 +13,10 @@ class GlobalState extends ChangeNotifier {
   List<String> notesRaw = [];
   List<Note> notes = [];
   int activeNote = 0;
-  
+  String directoryPath = '';
+
   void ensureFolder() async {
-    storage.ensureFolder();
+    directoryPath = await storage.ensureFolder();
   }
 
   void getNotes() async {
@@ -44,13 +45,6 @@ class GlobalState extends ChangeNotifier {
     notifyListeners();
   }
 
-  /*
-  void setupList(AppList widg) {
-    stackWidgets.add(widg);
-    notifyListeners();
-  }
-  */
-
   void wakePad({required int number}) {
     stackWidgets.add(Pad(number: number));
     notifyListeners();
@@ -62,9 +56,13 @@ class GlobalState extends ChangeNotifier {
     notifyListeners();
   }
 
-  /*
-  void saveNotes() {
-    1+1;
+  void saveNote(String content, String name) async {
+    final file = File('${directoryPath}${name}');
+    await file.writeAsString(content);
   }
-  */
+  
+  void updateNoteList(Note note) {
+    notes.add(note);
+    notifyListeners();
+  }
 }

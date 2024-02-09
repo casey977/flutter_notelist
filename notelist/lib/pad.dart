@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'note.dart';
 import 'state.dart';
 import 'package:provider/provider.dart';
 
@@ -27,8 +29,8 @@ class PadState extends State<Pad> {
   @override
   Widget build(BuildContext context) {
     if (widget.number == 0) {
-      _controller1.text = "";
-      _controller2.text = "";
+      _controller1.text = '';
+      _controller2.text = '';
     } else {
       _controller1.text = globalState.notes[globalState.activeNote].title;
       _controller2.text = globalState.notes[globalState.activeNote].content;
@@ -40,13 +42,28 @@ class PadState extends State<Pad> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.check),
-            onPressed: () {
-              1+1;
+            onPressed: () { // Save note...
+              Note tmpNote = Note(
+                moment: DateTime.now(),
+                title: _controller1.text,
+                content: _controller2.text
+              );
+              Map<String, dynamic> data = {
+                'moment': tmpNote.moment.toString(),
+                'title': tmpNote.title,
+                'content': tmpNote.content
+              };
+              globalState.updateNoteList(tmpNote);
+              String jsonString = json.encode(data);
+              globalState.saveNote(jsonString, data['moment']);
+              debugPrint('Notes: ${globalState.notes.length.toString()}');
+              globalState.popScreen();
+              
             }
           ),
           IconButton(
             icon: const Icon(Icons.delete),
-            onPressed: () {
+            onPressed: () { // Cancel note...
               globalState.popScreen();
             }
           )
@@ -87,58 +104,3 @@ class PadState extends State<Pad> {
     );
   }
 }
-
-/*
-
-Scaffold(
-      appBar: AppBar(
-        title: const Text("New note..."),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.check),
-            onPressed: () {
-              1+1;
-            }
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () {
-              1+1;
-            }
-          )
-        ]
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(25),
-        child: Column(
-          children: [
-            TextField(
-            controller: _controller,
-            keyboardType: TextInputType.multiline,
-            maxLines: 1,
-            decoration: InputDecoration(
-              labelText: "Title...",
-              filled: true,
-              fillColor: Colors.blueGrey,
-              border: InputBorder.none
-            )
-            ),
-            Container(
-              height: 10
-            ),
-            const TextField(
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              decoration: InputDecoration(
-                labelText: "Note...",
-                filled: true,
-                fillColor: Colors.blueGrey,
-                border: InputBorder.none
-              )
-            )
-          ]
-        )
-      )
-    );
-
-*/

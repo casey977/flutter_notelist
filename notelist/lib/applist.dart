@@ -21,11 +21,6 @@ class AppListState extends State<AppList> {
   Widget build(BuildContext context) {
     GlobalState globalState = Provider.of<GlobalState>(context);
 
-    debugPrint(globalState.stackWidgets.length.toString());
-
-    // Build list of notes here...
-    List<Widget> theList = [];
-    
     return Consumer<GlobalState>(
       builder: (context, leGlobalState, child) {
         return Scaffold(
@@ -41,10 +36,22 @@ class AppListState extends State<AppList> {
               )
             ]
           ),
-          body: ListView(
-            padding: const EdgeInsets.all(12),
-            scrollDirection: Axis.vertical,
-            children: theList // globalState.stackWidgets
+          body: ListView.builder(
+            padding: const EdgeInsets.all(8),
+            itemCount: globalState.notes.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  border: Border.all(
+                    width: 5,
+                    color: Colors.black,
+                  ),
+                ),
+                child: Center(child: Text(globalState.notes[index].title.toString())),
+              );
+            }
           )
         );
       }
