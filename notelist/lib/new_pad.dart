@@ -6,16 +6,14 @@ import 'note.dart';
 import 'state.dart';
 import 'package:provider/provider.dart';
 
-class Pad extends StatefulWidget {
-  final int number;
-
-  const Pad({super.key, required this.number});
+class NewPad extends StatefulWidget {
+  const NewPad({super.key});
 
   @override
   PadState createState() => PadState();
 }
 
-class PadState extends State<Pad> {
+class PadState extends State<NewPad> {
   late GlobalState globalState;
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
@@ -28,29 +26,34 @@ class PadState extends State<Pad> {
 
   @override
   Widget build(BuildContext context) {
-    _controller1.text = globalState.notes[widget.number].title;
-    _controller2.text = globalState.notes[widget.number].content;
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Note..."),
+        title: const Text("New note..."),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.check),
             onPressed: () { // Save note...
-              1+1;
-            }
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () {
-              1+1; // Delete note here...
+              Note tmpNote = Note(
+                moment: DateTime.now(),
+                title: _controller1.text,
+                content: _controller2.text
+              );
+              Map<String, dynamic> data = {
+                'moment': tmpNote.moment.toString(),
+                'title': tmpNote.title,
+                'content': tmpNote.content
+              };
+              globalState.updateNoteList(tmpNote);
+              String jsonString = json.encode(data);
+              globalState.saveNote(jsonString, data['moment']);
+              debugPrint('Notes: ${globalState.notes.length.toString()}');
               globalState.popScreen();
+              
             }
           ),
           IconButton(
             icon: const Icon(Icons.subdirectory_arrow_right_rounded),
-            onPressed: () {
+            onPressed: () { // Cancel note...
               globalState.popScreen();
             }
           )

@@ -31,8 +31,7 @@ class AppListState extends State<AppList> {
               IconButton(
                 icon: const Icon(Icons.add),
                 onPressed: () {
-                  debugPrint("Add!");
-                  globalState.wakePad(number: -999);
+                  globalState.newPad();
                 }
               )
             ]

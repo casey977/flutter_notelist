@@ -19,7 +19,6 @@ class TileState extends State<Tile> {
 
     return GestureDetector(
         onTap: () {
-          debugPrint('test: ${widget.number.toString()}');
           globalState.wakePad(number: widget.number);
         },
         child: Container(

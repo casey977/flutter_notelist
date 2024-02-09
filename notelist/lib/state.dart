@@ -3,6 +3,7 @@ import 'package:notelist/note.dart';
 import 'package:notelist/storage_handling.dart';
 import 'dart:convert';
 import 'dart:io';
+import 'new_pad.dart';
 import 'pad.dart';
 
 var storage = HandleStorage();
@@ -46,8 +47,12 @@ class GlobalState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void newPad() {
+    stackWidgets.add(NewPad());
+    notifyListeners();
+  }
+
   void wakePad({required int number}) {
-    debugPrint('number gotten: ${number}');
     stackWidgets.add(Pad(number: number));
     notifyListeners();
   }
