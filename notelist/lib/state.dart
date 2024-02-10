@@ -17,7 +17,6 @@ class GlobalState extends ChangeNotifier {
 
   void ensureFolder() async {
     directoryPath = await storage.ensureFolder();
-    debugPrint('directoryPath: ${directoryPath}');
   }
 
   void getNotes() async {
@@ -28,8 +27,6 @@ class GlobalState extends ChangeNotifier {
     File tmp;
     for (String element in filepaths) {
       tmp = await storage.localFile(element);
-      //debugPrint("tmp: $tmp");
-      //debugPrint("element: $element");
       try {
       text = await tmp.readAsString();
       notesRaw.add(text);
@@ -66,7 +63,6 @@ class GlobalState extends ChangeNotifier {
 
     try {
       final file = File('${directoryPath}${name}');
-      debugPrint('fffffffff: ${file} ${await file.exists()}');
       await file.writeAsString(content);
       notifyListeners();
     } on Exception catch (e) {

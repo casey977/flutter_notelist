@@ -11,7 +11,7 @@ class HandleStorage {
     final path = '${directory.path}/notelist/';
     if (!(await Directory(path).exists())) {
     } else {
-      await Directory(path).create(recursive: true); // Use path here
+      await Directory(path).create(recursive: true);
     }
     _dir = '${directory.path}/notelist/';
     return '${directory.path}/notelist/';
@@ -38,7 +38,6 @@ class HandleStorage {
       List<FileSystemEntity> files = directory.listSync();
       List<String> fileList = [];
       for (var file in files) {
-        debugPrint(file.toString());
         fileList.add(file.path);
       }
       return fileList;
